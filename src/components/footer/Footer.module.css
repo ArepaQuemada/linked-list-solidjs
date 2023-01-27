@@ -3,4 +3,7 @@
   padding: 2rem;
   background-color: #4527a0;
   height: 20vh;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }

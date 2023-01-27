@@ -1,17 +1,22 @@
-import { ParentComponent } from "solid-js";
+import { Accessor, Component, For, createEffect, createSignal } from "solid-js";
 import styles from "./Board.module.css";
-import { LinkedList } from "../../classes/LinkedList";
 import { NodeBox } from "../node-box/NodeBox";
+import { mapToArray } from "../../utilities/map-to-array";
+import { LinkedList, useLinkedList } from "../../hooks/useLinkedList";
+import { Node } from "../../classes/Node";
 
-export const Board: ParentComponent<{ linkedList: LinkedList }> = ({
-  children,
+export const Board: Component<{ linkedList: Accessor<LinkedList> }> = ({
+  linkedList,
 }) => {
+  const [nodes, setNodes] = createSignal<Node[]>();
+
+  createEffect(() => {
+    setNodes(mapToArray(linkedList()));
+  });
+
   return (
     <div class={styles.Board}>
-      {children}
-      <NodeBox data={"Hola"}></NodeBox>
-      <NodeBox data={9}></NodeBox>
-      <NodeBox data={true}></NodeBox>
+      <For each={nodes()}>{(node, i) => <NodeBox data={node.data} />}</For>
     </div>
   );
 };

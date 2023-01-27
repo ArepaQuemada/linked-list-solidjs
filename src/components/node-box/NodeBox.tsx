@@ -9,7 +9,7 @@ function NodeBox<T>({ data }: NodeboxProps<T>) {
   return (
     <div class={style.NodeBox}>
       <div class={`${style.box} ${style.box__left}`}>{`${data}`}</div>
-      <div class={`${style.box} ${style.box__right}`}>Next</div>
+      <div class={`${style.box} ${style.box__right}`}>{`Next Node ->`}</div>
     </div>
   );
 }
