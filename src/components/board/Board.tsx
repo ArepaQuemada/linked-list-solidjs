@@ -12,9 +12,6 @@ export const Board: ParentComponent<{ linkedList: LinkedList }> = ({
       <NodeBox data={"Hola"}></NodeBox>
       <NodeBox data={9}></NodeBox>
       <NodeBox data={true}></NodeBox>
-      <NodeBox data={{ obj: "prop" }}></NodeBox>
-      <NodeBox data={"Hola"}></NodeBox>
-      <NodeBox data={"Hola"}></NodeBox>
     </div>
   );
 };
