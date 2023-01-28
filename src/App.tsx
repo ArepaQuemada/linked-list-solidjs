@@ -3,6 +3,8 @@ import { Layout } from "./layout/Layout";
 import { Board } from "./components/board/Board";
 import { Footer } from "./components/footer/Footer";
 import { useLinkedList } from "./hooks/useLinkedList";
+import { Button } from "./components/button/Button";
+import { Input } from "./components/input/Input";
 
 /**
  * TODO
@@ -18,6 +20,7 @@ const App: Component = () => {
 
   const handleClick = () => {
     pushValue(inputValue());
+    setInputValue("");
   };
 
   const handleChange = (
@@ -33,13 +36,13 @@ const App: Component = () => {
     <Layout>
       <Board linkedList={linkedList}></Board>
       <Footer>
-        <input
+        <Input
           type="text"
           onInput={handleChange}
           value={inputValue()}
           oninput={handleChange}
         />
-        <button onClick={handleClick}>Push Node</button>
+        <Button onClick={handleClick}>Push Node</Button>
       </Footer>
     </Layout>
   );

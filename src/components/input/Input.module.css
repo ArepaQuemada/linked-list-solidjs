@@ -1,0 +1,15 @@
+.Input {
+  all: unset;
+  padding: 0.75rem;
+  border-bottom: 1px solid;
+  background-color: #90a4ae;
+  border-bottom: 1px solid #607d8b;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.Input:focus {
+  opacity: 0.8;
+  border-bottom: 1px solid #66bb6a;
+  background-color: #fafafafa;
+}
