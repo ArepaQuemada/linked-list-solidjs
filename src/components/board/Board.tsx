@@ -11,12 +11,13 @@ export const Board: Component<{ linkedList: Accessor<LinkedList> }> = ({
   const [nodes, setNodes] = createSignal<Node[]>();
 
   createEffect(() => {
+    console.log(linkedList());
     setNodes(mapToArray(linkedList()));
   });
 
   return (
     <div class={styles.Board}>
-      <For each={nodes()}>{(node, i) => <NodeBox data={node.data} />}</For>
+      <For each={nodes()}>{(node, i) => <NodeBox nodeProps={node} />}</For>
     </div>
   );
 };

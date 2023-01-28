@@ -16,11 +16,13 @@ export const useLinkedList = () => {
 
   const pushValue = <T extends {}>(data: T) => {
     const node = new Node(data);
+
     const { head, end, size } = linkedList();
     let currentHead: Node | null = head;
     let currentEnd: Node | null = end;
 
     if (!head) {
+      node.head = true;
       currentHead = node;
       currentEnd = currentHead;
     } else {
