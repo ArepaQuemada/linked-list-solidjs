@@ -34,8 +34,11 @@ export const useLinkedList = () => {
     setLinkedList({ head: currentHead, end: currentEnd, size: size + 1 });
   };
 
+  const deleteList = () => setLinkedList({ head: null, size: 0, end: null });
+
   return {
     linkedList,
     pushValue,
+    deleteList,
   };
 };

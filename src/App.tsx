@@ -8,19 +8,21 @@ import { Input } from "./components/input/Input";
 
 /**
  * TODO
- * YA FUNCIONA REACTIVIDAD Y MUESTRA NODOS
  * AGREGAR LAS FLECHAS QUE APUNTEN AL SIGUIENTE NODO
  * AGREGAR ALGO MÁS DESCRIPTIVO EN NEXT
- * AGREGAR FUNCIONALIDAD DE ELIMINAR
  * MEJORAR ESTILOS
  */
 const App: Component = () => {
   const [inputValue, setInputValue] = createSignal("");
-  const { linkedList, pushValue } = useLinkedList();
+  const { linkedList, pushValue, deleteList } = useLinkedList();
 
-  const handleClick = () => {
+  const handleClickAdd = () => {
     pushValue(inputValue());
     setInputValue("");
+  };
+
+  const handleClickDelete = () => {
+    deleteList();
   };
 
   const handleChange = (
@@ -42,7 +44,10 @@ const App: Component = () => {
           value={inputValue()}
           oninput={handleChange}
         />
-        <Button onClick={handleClick}>Push Node</Button>
+        <Button onClick={handleClickAdd}>Push Node</Button>
+        <Button onClick={handleClickDelete} danger>
+          Delete List
+        </Button>
       </Footer>
     </Layout>
   );

@@ -11,7 +11,6 @@ export const Board: Component<{ linkedList: Accessor<LinkedList> }> = ({
   const [nodes, setNodes] = createSignal<Node[]>();
 
   createEffect(() => {
-    console.log(linkedList());
     setNodes(mapToArray(linkedList()));
   });
 
