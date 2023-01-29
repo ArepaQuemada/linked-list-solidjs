@@ -36,9 +36,25 @@ export const useLinkedList = () => {
 
   const deleteList = () => setLinkedList({ head: null, size: 0, end: null });
 
+  const deleteLast = () => {
+    const { head, size } = linkedList();
+    if (size === 0 || !head) return;
+
+    let tempNode: Node<{}> | null = head;
+    let tempSize = 1;
+
+    while (tempSize !== size - 1 && tempNode.next) {
+      tempSize++;
+      tempNode = tempNode.next;
+    }
+    tempNode.next = null;
+    setLinkedList((prev) => ({ ...prev, end: tempNode, size: size - 1 }));
+  };
+
   return {
     linkedList,
     pushValue,
     deleteList,
+    deleteLast,
   };
 };
