@@ -1,11 +1,11 @@
 import { createSignal } from "solid-js";
 import { Node } from "../classes/Node";
+import { LinkedList, LinkedListOperations } from "../classes/LinkedList";
 
-export type LinkedList = {
-  size: number;
-  head: Node | null;
-  end: Node | null;
-};
+/**
+ * TRATAR DE ABSTRAER LA LÓGICA DE MANIPULACIÓN DEL OBJETO EN CLASE SEPARADA ASÍ SE PUEDE MODIFICAR: DONE
+ * AGREGAR MÉTODOS FALTANTES (INGRESAR AL INICIO, ETC)
+ */
 
 export const useLinkedList = () => {
   const [linkedList, setLinkedList] = createSignal<LinkedList>({
@@ -14,41 +14,20 @@ export const useLinkedList = () => {
     end: null,
   });
 
-  const pushValue = <T extends {}>(data: T) => {
-    const node = new Node(data);
-
-    const { head, end, size } = linkedList();
-    let currentHead: Node | null = head;
-    let currentEnd: Node | null = end;
-
-    if (!head) {
-      node.head = true;
-      currentHead = node;
-      currentEnd = currentHead;
-    } else {
-      if (currentEnd) {
-        currentEnd.next = node;
-        currentEnd = node;
-      }
-    }
-    setLinkedList({ head: currentHead, end: currentEnd, size: size + 1 });
-  };
-
   const deleteList = () => setLinkedList({ head: null, size: 0, end: null });
 
+  const pushValue = <T extends {}>(data: T) => {
+    const linkedListReference = new LinkedListOperations({
+      ...linkedList(),
+    }).pushValue(data);
+    setLinkedList(linkedListReference);
+  };
+
   const deleteLast = () => {
-    const { head, size } = linkedList();
-    if (size === 0 || !head) return;
-
-    let tempNode: Node<{}> | null = head;
-    let tempSize = 1;
-
-    while (tempSize !== size - 1 && tempNode.next) {
-      tempSize++;
-      tempNode = tempNode.next;
-    }
-    tempNode.next = null;
-    setLinkedList((prev) => ({ ...prev, end: tempNode, size: size - 1 }));
+    const linkedListReference = new LinkedListOperations({
+      ...linkedList(),
+    }).deleteLast();
+    setLinkedList(linkedListReference);
   };
 
   return {

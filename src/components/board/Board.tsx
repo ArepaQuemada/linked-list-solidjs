@@ -2,8 +2,8 @@ import { Accessor, Component, For, createEffect, createSignal } from "solid-js";
 import styles from "./Board.module.css";
 import { NodeBox } from "../node-box/NodeBox";
 import { mapToArray } from "../../utilities/map-to-array";
-import { LinkedList, useLinkedList } from "../../hooks/useLinkedList";
 import { Node } from "../../classes/Node";
+import { LinkedList } from "../../classes/LinkedList";
 
 export const Board: Component<{ linkedList: Accessor<LinkedList> }> = ({
   linkedList,
