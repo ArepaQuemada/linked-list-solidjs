@@ -15,15 +15,38 @@ export class LinkedListOperations {
   constructor(linkedList: LinkedList) {
     this.linkedList = linkedList;
   }
-  pushValue<T extends {}>(data: T) {
+
+  private incrementSize() {
     this.linkedList.size++;
+  }
+
+  private decrementSize() {
+    this.linkedList.size--;
+  }
+
+  private pushAtBeggining<T extends {}>(node: Node<T>) {
+    node.head = true;
+    this.linkedList.head = node;
+    this.linkedList.end = this.linkedList.head;
+    return this.linkedList;
+  }
+
+  private pushMoveHead<T extends {}>(node: Node<T>) {
+    node.head = true;
+    node.next = this.linkedList.head as Node<T>;
+    this.linkedList.head = node;
+    if (this.linkedList.head.next) {
+      this.linkedList.head.next.head = false;
+    }
+    return this.linkedList;
+  }
+
+  pushValue<T extends {}>(data: T) {
+    this.incrementSize();
     const node = new Node(data);
 
     if (!this.linkedList.head) {
-      node.head = true;
-      this.linkedList.head = node;
-      this.linkedList.end = this.linkedList.head;
-      return this.linkedList;
+      return this.pushAtBeggining(node);
     }
 
     if (this.linkedList.end) {
@@ -34,7 +57,7 @@ export class LinkedListOperations {
   }
 
   deleteLast() {
-    this.linkedList.size--;
+    this.decrementSize();
 
     let { size, head } = this.linkedList;
     if (size === 0 || !head) {
@@ -57,16 +80,11 @@ export class LinkedListOperations {
     if (index < 0 || index > this.linkedList.size) return this.linkedList;
     if (!this.linkedList.head) return this.linkedList;
 
-    this.linkedList.size++;
+    this.incrementSize();
+
     const node = new Node(data);
     if (index === 0) {
-      node.head = true;
-      node.next = this.linkedList.head as Node<T>;
-      this.linkedList.head = node;
-      if (this.linkedList.head.next) {
-        this.linkedList.head.next.head = false;
-      }
-      return this.linkedList;
+      return this.pushMoveHead(node);
     }
 
     let tempSize = 0;
