@@ -5,6 +5,7 @@
   color: #fafafa;
   cursor: pointer;
   border: 2px solid transparent;
+  text-align: center;
 }
 
 .Button:hover {

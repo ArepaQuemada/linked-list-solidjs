@@ -1,10 +1,8 @@
 import { createSignal } from "solid-js";
-import { Node } from "../classes/Node";
 import { LinkedList, LinkedListOperations } from "../classes/LinkedList";
 
 /**
- * TRATAR DE ABSTRAER LA LÓGICA DE MANIPULACIÓN DEL OBJETO EN CLASE SEPARADA ASÍ SE PUEDE MODIFICAR: DONE
- * AGREGAR MÉTODOS FALTANTES (INGRESAR AL INICIO, ETC)
+ * AGREGAR MÉTODOS FALTANTES (borrar en cierto punto)
  */
 
 export const useLinkedList = () => {
@@ -30,10 +28,18 @@ export const useLinkedList = () => {
     setLinkedList(linkedListReference);
   };
 
+  const insertAt = <T extends {}>(index: number, data: T) => {
+    const linkedListReference = new LinkedListOperations({
+      ...linkedList(),
+    }).inserAt(index, data);
+    setLinkedList(linkedListReference);
+  };
+
   return {
     linkedList,
     pushValue,
     deleteList,
     deleteLast,
+    insertAt,
   };
 };

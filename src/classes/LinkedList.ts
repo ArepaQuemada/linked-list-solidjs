@@ -33,7 +33,7 @@ export class LinkedListOperations {
     return this.linkedList;
   }
 
-  deleteLast = () => {
+  deleteLast() {
     this.linkedList.size--;
 
     let { size, head } = this.linkedList;
@@ -51,5 +51,34 @@ export class LinkedListOperations {
     tempNode.next = null;
     this.linkedList.end = tempNode;
     return this.linkedList;
-  };
+  }
+
+  inserAt<T extends {}>(index: number, data: T) {
+    if (index < 0 || index > this.linkedList.size) return this.linkedList;
+    if (!this.linkedList.head) return this.linkedList;
+
+    this.linkedList.size++;
+    const node = new Node(data);
+    if (index === 0) {
+      node.head = true;
+      node.next = this.linkedList.head as Node<T>;
+      this.linkedList.head = node;
+      if (this.linkedList.head.next) {
+        this.linkedList.head.next.head = false;
+      }
+      return this.linkedList;
+    }
+
+    let tempSize = 0;
+    let tempNode = this.linkedList.head;
+    while (tempNode.next && tempSize < index - 1) {
+      tempSize++;
+      tempNode = tempNode.next;
+    }
+
+    node.next = tempNode.next as Node<T>;
+    tempNode.next = node;
+
+    return this.linkedList;
+  }
 }
