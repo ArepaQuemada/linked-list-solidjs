@@ -31,6 +31,13 @@ export class LinkedListOperations {
     return this.linkedList;
   }
 
+  private pushNextTo<T extends {}>(node: Node<T>) {
+    if (!this.linkedList.end) return;
+    this.linkedList.end.next = node;
+    this.linkedList.end = node;
+    return this.linkedList;
+  }
+
   private pushMoveHead<T extends {}>(node: Node<T>) {
     node.head = true;
     node.next = this.linkedList.head as Node<T>;
@@ -49,11 +56,7 @@ export class LinkedListOperations {
       return this.pushAtBeggining(node);
     }
 
-    if (this.linkedList.end) {
-      this.linkedList.end.next = node;
-      this.linkedList.end = node;
-    }
-    return this.linkedList;
+    return this.pushNextTo(node);
   }
 
   deleteLast() {

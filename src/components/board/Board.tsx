@@ -16,7 +16,9 @@ export const Board: Component<{ linkedList: Accessor<LinkedList> }> = ({
 
   return (
     <div class={styles.Board}>
-      <For each={nodes()}>{(node, i) => <NodeBox nodeProps={node} />}</For>
+      {nodes()?.map((node) => (
+        <NodeBox nodeProps={node} />
+      ))}
     </div>
   );
 };
