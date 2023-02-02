@@ -1,4 +1,4 @@
-import { LinkedList } from "../hooks/useLinkedList";
+import { LinkedList } from "../classes/LinkedList";
 
 export const mapToArray = (list: LinkedList) => {
   if (!list.head) return [];
@@ -11,5 +11,5 @@ export const mapToArray = (list: LinkedList) => {
     nodes = [...nodes, currentNode];
   }
 
-  return nodes;
+  return [...nodes];
 };

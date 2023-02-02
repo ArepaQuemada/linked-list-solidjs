@@ -32,7 +32,7 @@ export class LinkedListOperations {
   }
 
   private pushNextTo<T extends {}>(node: Node<T>) {
-    if (!this.linkedList.end) return;
+    if (!this.linkedList.end) return this.linkedList;
     this.linkedList.end.next = node;
     this.linkedList.end = node;
     return this.linkedList;
@@ -50,7 +50,7 @@ export class LinkedListOperations {
 
   pushValue<T extends {}>(data: T) {
     this.incrementSize();
-    const node = new Node(data);
+    const node = new Node(data, this.linkedList.size);
 
     if (!this.linkedList.head) {
       return this.pushAtBeggining(node);
@@ -85,7 +85,7 @@ export class LinkedListOperations {
 
     this.incrementSize();
 
-    const node = new Node(data);
+    const node = new Node(data, this.linkedList.size);
     if (index === 0) {
       return this.pushMoveHead(node);
     }

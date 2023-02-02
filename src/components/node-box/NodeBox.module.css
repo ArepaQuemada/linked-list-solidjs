@@ -10,6 +10,15 @@
   border: solid 3px #000;
   margin: 1rem;
   border-radius: 1rem;
+  animation: node-box 1s ease-in forwards;
+  opacity: 0;
+}
+
+@keyframes node-box {
+  100% {
+    opacity: 1;
+    transform: translateX(20%);
+  }
 }
 
 .box {

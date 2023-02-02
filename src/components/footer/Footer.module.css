@@ -11,6 +11,7 @@
 
 @media (max-width: 412px) {
   .Footer {
+    min-height: 55vh;
     flex-wrap: wrap;
   }
 }

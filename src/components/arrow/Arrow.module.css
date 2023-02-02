@@ -12,6 +12,15 @@
   max-width: 35px;
   right: 0;
   left: 70px;
-  transition: ease 2s;
-  opacity: 5;
+  animation: arrow-animation 1s ease-in forwards;
+  opacity: 0;
+}
+
+@keyframes arrow-animation {
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
