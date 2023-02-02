@@ -84,12 +84,16 @@ const App: Component = () => {
           />
           <Button onClick={handleClickPushAt}>Push At</Button>
         </div>
-        <Button onClick={handleClickDelete} danger>
-          Delete last
-        </Button>
-        <Button onClick={handleClickDeleteAll} danger>
-          Delete All
-        </Button>
+        <div class={styles["form-section"]}>
+          <Button onClick={handleClickDelete} danger>
+            Delete last
+          </Button>
+        </div>
+        <div class={styles["form-section"]}>
+          <Button onClick={handleClickDeleteAll} danger>
+            Delete All
+          </Button>
+        </div>
       </Footer>
     </Layout>
   );

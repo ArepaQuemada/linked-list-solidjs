@@ -3,6 +3,7 @@
 }
 
 .NodeBox {
+  position: relative;
   display: inline-flex;
   width: 145px;
   height: 45px;

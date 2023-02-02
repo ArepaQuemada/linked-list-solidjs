@@ -1,6 +1,7 @@
 import { Component, Match, Show, Switch } from "solid-js";
 import style from "./NodeBox.module.css";
 import { Node } from "../../classes/Node";
+import { Arrow } from "../arrow/Arrow";
 
 interface NodeboxProps<T> {
   nodeProps: Node<T>;
@@ -21,11 +22,13 @@ function NodeBox<T>(props: NodeboxProps<T>) {
         <div
           class={`${style.box} ${style.box__left}`}
         >{`${props.nodeProps.data}`}</div>
-        <div class={`${style.box} ${style.box__right}`}>{`Next ->`}</div>
+        <div class={`${style.box} ${style.box__right}`}>
+          {" "}
+          <Show when={!!props.nodeProps.next} fallback={<></>}>
+            <Arrow />
+          </Show>
+        </div>
       </div>
-      <Show when={!!props.nodeProps.next} fallback={<></>}>
-        <div>Pinto flechita</div>
-      </Show>
     </div>
   );
 }

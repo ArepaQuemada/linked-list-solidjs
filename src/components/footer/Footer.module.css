@@ -11,6 +11,6 @@
 
 @media (max-width: 412px) {
   .Footer {
-    flex-direction: column;
+    flex-wrap: wrap;
   }
 }
